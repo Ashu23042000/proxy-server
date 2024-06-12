@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"github.com/Ashu23042000/logger/logger"
+	"github.com/Ashu23042000/proxy-server/cache"
 )
 
 type IServer interface {
@@ -16,12 +17,14 @@ type Server struct {
 	log           logger.ILogger
 	listenAddress string
 	listner       net.Listener
+	cache         cache.ICache
 }
 
-func New(log logger.ILogger, listenAddr string) IServer {
+func New(log logger.ILogger, listenAddr string, cache cache.ICache) IServer {
 	return &Server{
 		log:           log,
 		listenAddress: listenAddr,
+		cache:         cache,
 	}
 }
 
